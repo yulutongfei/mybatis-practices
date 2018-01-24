@@ -1,0 +1,15 @@
+/.idea/
+*.idea/
+*.iml
+*logs/
+*.log
+*.classpath
+*.project
+*.settings/
+*.metadata/
+RemoteSystemsTempFiles/
+Servers/
+*/target/
+*.DS_Store
+/itfinls/src/main/webapp/js/config.js
+/itfinls/logs/

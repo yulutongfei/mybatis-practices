@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.ittimeline.mybatis.practices.core.mapper.CountryMapper">
+
+    <!-- SQL 获取所有的国家集合-->
+    <!--
+        id定义了该查询的唯一ID
+        resultType:定义当前查询的返回类型，此处就是指Country,之前在mybatis-config.xml中配置的typeAliases主要用于这里，
+        如果没有配置就要写成net.ittimeline.mybatis.practices.core.entity.Country
+
+    -->
+    <select id="selectAll" resultType="Country">
+        select  country_id as countryId,country_name as countryName, country_code as countryCode from t_country
+    </select>
+
+    <!-- SQL 根据ID获取国家信息-->
+    <select id="selectById" resultType="Country">
+
+        select  country_id as countryId,country_name as countryName, country_code as countryCode from t_country WHERE country_id=#{id} ;
+    </select>
+
+</mapper>

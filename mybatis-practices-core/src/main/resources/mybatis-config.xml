@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 采用log4j2作为日志框架的实现-->
+    <settings>
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+
+    <!--
+    配置包的别名:在MyBatis中要大量使用类的全限定名例如net.ittimeline.mybatis.model.Country,为了方便使用Country，配置如下所示的包
+    这样在使用类的时候不需要全限定名，只需要写Country即可
+    -->
+    <typeAliases>
+        <package name="net.ittimeline.mybatis.practices.core.entity"/>
+    </typeAliases>
+
+    <!--配置数据库连接信息 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="guanglei"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 指定MyBatis的SQL语句和映射配置文件-->
+    <mappers>
+        <mapper resource="mapper/CountryMapper.xml"/>
+    </mappers>
+</configuration>

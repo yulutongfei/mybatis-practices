@@ -20,6 +20,8 @@
         <log4j2.version>2.9.0</log4j2.version>
         <commons-lang3.version>3.5</commons-lang3.version>
         <commons-collection4.version>4.1</commons-collection4.version>
+        <p6spy.version>3.6.0</p6spy.version>
+        <druid.version>1.1.6</druid.version>
     </properties>
 
 
@@ -32,6 +34,19 @@
             <artifactId>mybatis</artifactId>
             <version>${mybatis.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>${p6spy.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
 
         <!-- 添加junit单元测试的依赖-->
 

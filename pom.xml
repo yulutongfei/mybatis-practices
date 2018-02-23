@@ -10,10 +10,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>mybatis-practices-core</module>
-        <module>mybatis-practices-spring5</module>
-        <module>mybatis-practices-base</module>
-        <module>mybatis-practices-pojo</module>
-        <module>mybatis-practices-util</module>
     </modules>
 
     <properties>

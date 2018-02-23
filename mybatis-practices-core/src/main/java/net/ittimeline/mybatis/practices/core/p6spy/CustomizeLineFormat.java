@@ -1,4 +1,4 @@
-package net.ittimeline.mybatis.practices.core;
+package net.ittimeline.mybatis.practices.core.p6spy;
 
 import com.alibaba.druid.sql.SQLUtils;
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;

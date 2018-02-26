@@ -13,3 +13,5 @@ Servers/
 *.DS_Store
 /itfinls/src/main/webapp/js/config.js
 /itfinls/logs/
+/*/*.iml
+

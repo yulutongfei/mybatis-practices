@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--设置log4j2的自身log级别为warn -->
+<configuration status="warn" monitorInterval="3600" shutdownHook="disable">
+    <properties>
+
+        <Property name="app_name">mybatis-practices-spring5-integration</Property>
+        <Property name="log_path">logs/${app_name}</Property>
+        <Property name="log_file_size">100MB</Property>
+
+    </properties>
+    <appenders>
+        <!--
+          Console 的target是SYSTEM_OUT是输出到统一的输出流，没有指定日志文件
+          配置文件log4j2.xml 中的<Console name="Console" target="SYSTEM_OUT">表示 log4j2将日志配置到System.out输入到控制到输出流。
+      -->
+        <console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss SSS}][%t][%p][%l] %m%n" />
+        </console>
+
+
+        <!--info级别的日志记录配置-->
+
+        <RollingFile name="RollingFileInfo" fileName="${log_path}/info.log"
+                     filePattern="${log_path}/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="INFO" />
+                <ThresholdFilter level="WARN" onMatch="DENY"
+                                 onMismatch="NEUTRAL" />
+            </Filters>
+            <PatternLayout pattern="[%d%d{yyyy-MM-dd HH:mm:ss SSS}][%t][%p][%c:%L] %m%n" />
+            <Policies>
+                <!-- 归档每天的文件 -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!-- 限制单个文件大小 -->
+                <SizeBasedTriggeringPolicy size="${log_file_size}" />
+            </Policies>
+            <!-- 限制每天文件个数 -->
+            <DefaultRolloverStrategy compressionLevel="0" max="10"/>
+        </RollingFile>
+
+        <!--warn级别的日志记录配置-->
+        <RollingFile name="RollingFileWarn" fileName="${log_path}/warn.log"
+                     filePattern="${log_path}/$${date:yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="WARN" />
+                <ThresholdFilter level="ERROR" onMatch="DENY"
+                                 onMismatch="NEUTRAL" />
+            </Filters>
+            <PatternLayout pattern="[%d%d{yyyy-MM-dd HH:mm:ss SSS}][%t][%p][%c:%L] %m%n" />
+            <Policies>
+                <!-- 归档每天的文件 -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!-- 限制单个文件大小 -->
+                <SizeBasedTriggeringPolicy size="${log_file_size}" />
+            </Policies>
+            <!-- 限制每天文件个数 -->
+            <DefaultRolloverStrategy compressionLevel="0" max="10"/>
+        </RollingFile>
+
+        <!-- error级别的日志配置-->
+        <RollingFile name="RollingFileError" fileName="${log_path}/error.log"
+                     filePattern="${log_path}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz">
+            <ThresholdFilter level="ERROR" />
+            <PatternLayout pattern="[%d%d{yyyy-MM-dd HH:mm:ss SSS}][%t][%p][%c:%L] %m%n" />
+            <Policies>
+                <!-- 归档每天的文件 -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!-- 限制单个文件大小 -->
+                <SizeBasedTriggeringPolicy size="${log_file_size}" />
+            </Policies>
+            <!-- 限制每天文件个数 -->
+            <DefaultRolloverStrategy compressionLevel="0" max="10"/>
+        </RollingFile>
+
+    </appenders>
+
+    <loggers>
+        <!--第三方框架显示的日志级别-->
+        <logger name="org.springframework" level="INFO"/>
+        <logger name ="org.ibatis" level="info"/>
+
+
+
+        <root level="info">
+            <appender-ref ref="Console" />
+            <appender-ref ref="RollingFileInfo" />
+            <appender-ref ref="RollingFileWarn" />
+            <appender-ref ref="RollingFileError" />
+        </root>
+
+    </loggers>
+
+</configuration>
